@@ -10,8 +10,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="es.telefonica.talentum.myapplication.MainActivity">
 
+    <ImageView
+        android:id="@+id/activity_main___card_image"
+        tools:src="@drawable/card_back"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/activity_main___card_left_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textSize="50sp"
+        tools:text="48 cards left"
+        android:gravity="center"
+        android:textColor="#c15d5d"
+        android:background="#dd1a1aae"/>
+
 </RelativeLayout>
