@@ -10,15 +10,15 @@ public class Card {
         CLUBS
     }
 
-    private String suit;
+    private Suit suit;
     private String image;
     private int remains;
 
-    public String getSuit() {
+    public Suit getSuit() {
         return suit;
     }
 
-    public void setSuit(String suit) {
+    public void setSuit(Suit suit) {
         this.suit = suit;
     }
 

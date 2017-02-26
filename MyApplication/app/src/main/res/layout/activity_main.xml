@@ -26,4 +26,13 @@
         android:textColor="#c15d5d"
         android:background="#dd1a1aae"/>
 
+    <Button
+        android:id="@+id/activity_main___new_deck"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Start"
+        android:textSize="25sp"
+        android:background="#dda488d9"/>
+
 </RelativeLayout>
