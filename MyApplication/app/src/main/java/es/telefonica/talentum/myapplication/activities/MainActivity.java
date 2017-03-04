@@ -19,11 +19,11 @@ import es.telefonica.talentum.myapplication.model.Deck;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_main___card_left_text)TextView cardLeft;
     @BindView(R.id.activity_main___card_image)ImageView imageCard;
-    @BindView(R.id.activity_main___new_deck)Button newDeck;
-
+    @BindView(R.id.activity_main___card_left_text)TextView cardLeft;
     private Deck deck;
+    //@BindView(R.id.activity_main___new_deck)Button newDeck;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,48 +34,30 @@ public class MainActivity extends AppCompatActivity {
         DeckApiManager apiManager = new DeckApiManager();
         apiManager.setOnNewDeckListener(new DeckApiManager.DeckApiManagerNewDeckListener() {
             @Override
-            public void onNewDeck(Deck deck) {
-
-            }
-        });
-
-        newDeck.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DeckApiManager apiManager = new DeckApiManager();
-                apiManager.setOnNewDeckListener(new DeckApiManager.DeckApiManagerNewDeckListener() {
-                    @Override
-                    public void onNewDeck(Deck deckFromJson) {
-                        cardLeft.setText("" + deckFromJson.getRemaining());
-                        deck = deckFromJson;
-                    }
-                });
-
-            }
-        });
-
-        imageCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CardApiManager cardApiManager = new CardApiManager();
-                cardApiManager.setListener(new CardApiManager.CardApiManagerNewCardListener() {
-                    @Override
-                    public void onNewCard(Card card) {
-                        Picasso.with(MainActivity.this).load(card.getImage()).placeholder(R.drawable.card_back);
-                        cardLeft.setText("" + card.getRemains());
-                        if (card.getRemains()==0){
-                            newDeck.setVisibility(View.VISIBLE);
-                            imageCard.setVisibility(View.INVISIBLE);
-                            //finalCard.setVisibility(View.VISIBLE);
-                            Picasso.with(MainActivity.this).load(card.getImage()).placeholder(R.drawable.card_back);
-                        }
-                    }
-                });
-                cardApiManager.newCard(v.getContext(), deck);
+            public void onNewDeck(Deck deckJson) {
+                cardLeft.setText(""+deckJson.getRemaining());
+                deck = deckJson;
 
             }
         });
 
         apiManager.newDeck(this);
+
+        imageCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                CardApiManager cardApiManager = new CardApiManager();
+                cardApiManager.setListener(new CardApiManager.CardApiManagerNewCardListener() {
+                    @Override
+                    public void onNewCard(Card card) {
+                        Picasso.with(view.getContext()).load(card.getImage()).into(imageCard);//placeholder(R.drawable.card_back);
+                        cardLeft.setText("" + card.getRemains());
+                    }
+                });
+                cardApiManager.newCard(view.getContext(), deck);
+
+            }
+        });
+
     }
 }

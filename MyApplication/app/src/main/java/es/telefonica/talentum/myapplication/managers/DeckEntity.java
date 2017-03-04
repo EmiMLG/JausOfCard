@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName;
 public class DeckEntity {
 
     @SerializedName("remaining") private int remaining;
-    @SerializedName("success") private String deck_id;
-    @SerializedName("deck_id") private boolean success;
+    @SerializedName("success") private boolean success;
+    @SerializedName("deck_id") private String deck_id;
     @SerializedName("shuffled") private boolean shuffled;
 
 

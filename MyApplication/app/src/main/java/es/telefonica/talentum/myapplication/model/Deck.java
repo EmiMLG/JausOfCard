@@ -2,16 +2,18 @@ package es.telefonica.talentum.myapplication.model;
 
 
 public class Deck {
+    public Deck(){
+    }
 
     private int remaining;
     private String id;
 
-    public Deck(String id) {
-        this.id = id;
+    public Deck(int remaining) {
+        this.remaining = remaining;
     }
 
-    public Deck(){
-
+    public Deck(String id) {
+        this.id = id;
     }
 
     public int getRemaining() {

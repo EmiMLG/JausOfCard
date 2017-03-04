@@ -34,10 +34,12 @@ public class CardApiManager{
     private static final String FINAL_URL = "/draw/?count=1";
 
     public void newCard(Context context, Deck deck){
+
+        String url = BASE_URL+deck.getId()+FINAL_URL;
+        Log.d("URL",url);
+
         RequestQueue queue = Volley.newRequestQueue(context);
 
-        String url = BASE_URL + deck.getId() +FINAL_URL;
-        Log.d("URL",url);
 
         StringRequest request = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -64,7 +66,7 @@ public class CardApiManager{
         Card card = new Card();
         card.setImage(cardEntity.getCards().get(0).getImage());
 
-        if(cardEntity.getCards().get(0).getSuit().equals(Card.Suit.CLUBS)){
+       /* if(cardEntity.getCards().get(0).getSuit().equals(Card.Suit.CLUBS)){
             card.setSuit(Card.Suit.CLUBS);
         }else if(cardEntity.getCards().get(0).getSuit().equals(Card.Suit.HEARTS)){
             card.setSuit(Card.Suit.HEARTS);
@@ -72,7 +74,7 @@ public class CardApiManager{
             card.setSuit(Card.Suit.SPADES);
         }else if(cardEntity.getCards().get(0).getSuit().equals(Card.Suit.DIAMONDS)) {
             card.setSuit(Card.Suit.DIAMONDS);
-        }
+        }*/
         card.setRemains(cardEntity.getRemaining());
 
         if(listener !=null){

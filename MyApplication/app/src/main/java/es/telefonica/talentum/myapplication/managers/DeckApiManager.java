@@ -32,7 +32,7 @@ public class DeckApiManager {
 
     private static final String NEW_DECK_REQUEST = "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1";
 
-    public void newDeck(Context context) { //Sirva para salir de su memoria, y llegar a diferentes sitios.
+    public void newDeck(Context context) { //Sirve para salir de su memoria, y llegar a diferentes sitios.
         RequestQueue queue = Volley.newRequestQueue(context);
 
         StringRequest request = new StringRequest(NEW_DECK_REQUEST, new Response.Listener<String>() {
@@ -63,7 +63,7 @@ public class DeckApiManager {
         deck.setId(deckEntity.getDeck_id());
         deck.setRemaining(deckEntity.getRemaining());
 
-        if (listener != null);{
+        if (listener!= null){
             listener.onNewDeck(deck);
         }
     }
